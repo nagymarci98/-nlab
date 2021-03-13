@@ -6,8 +6,10 @@ import productRoutes from './routes/productRoutes.js'
 import { notFound, errorHandler } from './middleware/errorMW.js'
 
 dotenv.config()
-const app = express();
 connectDB();
+
+const app = express();
+
 
 app.get('/', (req, res) => {
     res.send('API IS RUNNING');
