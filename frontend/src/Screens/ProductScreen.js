@@ -7,7 +7,7 @@ import { getProductDetails } from '../actions/productActions'
 import Loader from '../Components/Loader'
 import Message from '../Components/Message'
 
-const ProductScreen = ({ match }) => {
+const ProductScreen = ({ history, match }) => {
     const [qty, setQty] = useState(0);
     const dispatch = useDispatch();
 
@@ -20,6 +20,9 @@ const ProductScreen = ({ match }) => {
         );
     }, [dispatch, match]);
 
+    const addToCartHandler = () => {
+        history.push(`/cart/${match.params.id}?qty=${qty}`)
+    };
     return (
         <>
             <Link className='btn btn-light my-3' to='/'>Go Back</Link>
@@ -86,7 +89,7 @@ const ProductScreen = ({ match }) => {
                                 )}
 
                                 <ListGroup.Item>
-                                    <Button className='btn-block' type='button' disabled={product.countInStock === 0}>
+                                    <Button className='btn-block' type='button' disabled={product.countInStock === 0} onClick={addToCartHandler}>
                                         Add To Cart
                                 </Button>
                                 </ListGroup.Item>
