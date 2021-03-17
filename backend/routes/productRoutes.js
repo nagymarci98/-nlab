@@ -1,18 +1,14 @@
 import express from 'express'
 import Product from '../models/productModel.js'
 import asyncHandler from 'express-async-handler'
-import pkg from '../../frontend/src/counter.js';
-const { countInc, getCounter } = pkg;
 
 const router = express.Router();
 
 //@desc     Fetch all products
 //@route    GET /api/products
 //@access   Public
-router.get('/', asyncHandler(async (req, res) => {
+router.get('/', asyncHandler(async (req, res, next) => {
     const products = await Product.find({});
-    console.log('Megkaptam a get req-et ' + getCounter());
-    throw new Error('Some errorererre');
     res.json(products);
 }));
 
