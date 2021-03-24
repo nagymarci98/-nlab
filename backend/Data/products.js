@@ -1,9 +1,74 @@
 const products = [
   {
+    name: 'iPad Air 2020 10.5" Tablet',
+    image: '/images/iPadAir.jpg',
+    description: 'The stunning 10.9-inch Liquid Retina display with wide color lets you see photos, videos, and games in vivid, true-to-life detail.',
+    brand: 'Apple',
+    category: 'Electronics',
+    price: 184900,
+    countInStock: 25,
+    rating: 4.9,
+    numReviews: 18,
+  },
+  {
+    name: 'MacBook Pro 13.3" Laptop',
+    image: '/images/macbookPro.jpg',
+    description: 'The Apple M1 chip redefines the 13-inch MacBook Pro. Featuring an 8-core CPU that flies through complex workflows in photography, coding, video editing, and more.',
+    brand: 'Apple',
+    category: 'Electronics',
+    price: 370000,
+    countInStock: 6,
+    rating: 4.8,
+    numReviews: 9,
+  },
+  {
+    name: 'Apple TV 4K 2018',
+    image: '/images/appleTv.jpg',
+    description: 'Apple TV 4K lets you watch movies and shows in amazing 4K HDR - and now it completes the picture with immersive sound from Dolby Atmos.',
+    brand: 'Apple',
+    category: 'Electronics',
+    price: 62900,
+    countInStock: 22,
+    rating: 4.5,
+    numReviews: 13,
+  },
+  {
+    name: 'DJI - Mavic Air 2',
+    image: '/images/drone.jpg',
+    description: 'Shoot breathtaking aerial videos with this DJI Mavic Air 2 drone. The camera has a 0.5-inch image sensor for precise photos at 48.0MP and quality 4K video recordings, while the cinematic capture feature offers hyperlapse and QuickShots capabilities for optimal results.',
+    brand: 'DJI',
+    category: 'Electronics',
+    price: 299900,
+    countInStock: 10,
+    rating: 4.7,
+    numReviews: 12,
+  },
+  {
+    name: 'JBL-Flip 5 Bluetooth Speaker',
+    image: '/images/jbl.jpg',
+    description: 'Powerful drivers and JBL PartyBoost technology help you feel the beat with loud, accurate audio across a wide frequency response range.',
+    brand: 'JBL',
+    category: 'Electronics',
+    price: 36750,
+    countInStock: 28,
+    rating: 4.9,
+    numReviews: 36,
+  },
+  {
+    name: 'Beats by Dr. Dre Solo Pro',
+    image: '/images/soloBeats.jpg',
+    description: 'To deliver sound how you want it, Solo Pro features two listening modes: Active Noise Cancelling (ANC) and Transparency. Beats Pure ANC gives you the space to create with fully immersive sound, while Transparency helps you stay aware of your surroundings.',
+    brand: 'Beats by Dr. Dre',
+    category: 'Electronics',
+    price: 52195,
+    countInStock: 45,
+    rating: 4.6,
+    numReviews: 31,
+  },
+  {
     name: 'Airpods Wireless Bluetooth Headphones',
     image: '/images/airpods.jpg',
-    description:
-      'Bluetooth technology lets you connect it with compatible devices wirelessly High-quality AAC audio offers immersive listening experience Built-in microphone allows you to take calls while working',
+    description: 'Bluetooth technology lets you connect it with compatible devices wirelessly High-quality AAC audio offers immersive listening experience Built-in microphone allows you to take calls while working',
     brand: 'Apple',
     category: 'Electronics',
     price: 99000,
@@ -14,8 +79,7 @@ const products = [
   {
     name: 'iPhone 11 Pro 256GB Memory',
     image: '/images/phone.jpg',
-    description:
-      'Introducing the iPhone 11 Pro. A transformative triple-camera system that adds tons of capability without complexity. An unprecedented leap in battery life',
+    description: 'Introducing the iPhone 11 Pro. A transformative triple-camera system that adds tons of capability without complexity. An unprecedented leap in battery life',
     brand: 'Apple',
     category: 'Electronics',
     price: 330000,
@@ -26,8 +90,7 @@ const products = [
   {
     name: 'Cannon EOS 80D DSLR Camera',
     image: '/images/camera.jpg',
-    description:
-      'Characterized by versatile imaging specs, the Canon EOS 80D further clarifies itself using a pair of robust focusing systems and an intuitive design',
+    description: 'Characterized by versatile imaging specs, the Canon EOS 80D further clarifies itself using a pair of robust focusing systems and an intuitive design',
     brand: 'Cannon',
     category: 'Electronics',
     price: 290000,
@@ -38,8 +101,7 @@ const products = [
   {
     name: 'Sony Playstation 4 Pro White Version',
     image: '/images/playstation.jpg',
-    description:
-      'The ultimate home entertainment center starts with PlayStation. Whether you are into gaming, HD movies, television, music',
+    description: 'The ultimate home entertainment center starts with PlayStation. Whether you are into gaming, HD movies, television, music',
     brand: 'Sony',
     category: 'Electronics',
     price: 121000,
@@ -50,8 +112,7 @@ const products = [
   {
     name: 'Logitech G-Series Gaming Mouse',
     image: '/images/mouse.jpg',
-    description:
-      'Get a better handle on your games with this Logitech LIGHTSYNC gaming mouse. The six programmable buttons allow customization for a smooth playing experience',
+    description: 'Get a better handle on your games with this Logitech LIGHTSYNC gaming mouse. The six programmable buttons allow customization for a smooth playing experience',
     brand: 'Logitech',
     category: 'Electronics',
     price: 35000,
@@ -62,8 +123,7 @@ const products = [
   {
     name: 'Amazon Echo Dot 3rd Generation',
     image: '/images/alexa.jpg',
-    description:
-      'Meet Echo Dot - Our most popular smart speaker with a fabric design. It is our most compact smart speaker that fits perfectly into small space',
+    description: 'Meet Echo Dot - Our most popular smart speaker with a fabric design. It is our most compact smart speaker that fits perfectly into small space',
     brand: 'Amazon',
     category: 'Electronics',
     price: 9990,

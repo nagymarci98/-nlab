@@ -1,0 +1,6 @@
+önlab hibák
+
+Backend
+- controllers helyett elég lenne middlewares is, és a route-okat azokból felépíteni
+- jwt nem a leghasznosabb, leküldünk vele minden adatot
+
