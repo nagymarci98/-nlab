@@ -36,3 +36,21 @@ h2 {
   height: 15vw;
   object-fit: contain;
 }
+
+.nav-link {
+  color: rgb(255, 255, 255);
+}
+.checkout-steps {
+  color: black;
+}
+.nav-link:hover {
+  color: #2c3e5d;
+}
+.myBrandName {
+  color: white;
+  font-weight: bold;
+  font-size: x-large;
+}
+
+.myBadge {
+}

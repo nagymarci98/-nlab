@@ -21,7 +21,7 @@ const Registerscreen = ({ location, history }) => {
     const { loading, error, userInfo } = userRegister;
 
     useEffect(() => {
-        if (userInfo) {
+        if (userInfo && Object.keys(userInfo).length !== 0) {
             history.push(redirect);
         }
     }, [history, userInfo, redirect]);

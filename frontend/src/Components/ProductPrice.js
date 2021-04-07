@@ -4,7 +4,8 @@ const ProductPrice = (props) => {
     const formatter = new Intl.NumberFormat('hu-HU', {
         style: 'currency',
         currency: 'HUF',
-        maximumFractionDigits: 0
+        maximumFractionDigits: 0,
+        minimumFractionDigits: 0
     });
     const formattedPrice = formatter.format(props.price);
 

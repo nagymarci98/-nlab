@@ -32,7 +32,7 @@ const ProductScreen = ({ history, match }) => {
                     <Col md={6}>
                         <Image src={product.image} alt={product.name} fluid />
                     </Col>
-                    <Col md={6} lg={3}>
+                    <Col md={6} lg={3} className='mb-4'>
                         <ListGroup variant='flush'>
                             <ListGroup.Item>
                                 <h3>{product.name}</h3>
