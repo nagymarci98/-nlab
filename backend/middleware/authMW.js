@@ -20,6 +20,15 @@ const authMW = asyncHandler(async (req, res, next) => {
         res.status(401);
         return next('Not authoritzed, no token');
     }
-})
+});
 
-export { authMW };
+const isAdmin = (req, res, next) => {
+    if (req.user && req.user.isAdmin) {
+        return next();
+    } else {
+        res.status(401);
+        throw new Error('Not authorized as an admin')
+    }
+}
+
+export { authMW, isAdmin };
