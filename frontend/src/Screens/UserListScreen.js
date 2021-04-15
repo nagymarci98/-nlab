@@ -13,7 +13,6 @@ const UserListScreen = ({ history }) => {
     //for delete message
     const [messageDelete, setMessageDelete] = useState(null);
 
-
     const userList = useSelector(state => state.userList);
     const { loading, error, users } = userList;
 
@@ -22,6 +21,7 @@ const UserListScreen = ({ history }) => {
 
     const userDelete = useSelector(state => state.userDelete);
     const { success: successDelete, error: errorDelete } = userDelete;
+
     const sortUsers = (users) => {
         users.sort((user1, user2) => {
             if (user1.isAdmin < user2.isAdmin) {

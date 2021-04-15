@@ -22,7 +22,7 @@ const ProfileScreen = ({ history }) => {
     const { loading, error, user } = userDetails;
 
     const orderMyorders = useSelector(state => state.orderMyorders);
-    const { loading: loadingMyordrs, error: errorMyorders, orders } = orderMyorders;
+    const { loading: loadingMyOrders, error: errorMyorders, orders } = orderMyorders;
 
     const userLogin = useSelector(state => state.userLogin);
     const { userInfo } = userLogin;
@@ -34,7 +34,8 @@ const ProfileScreen = ({ history }) => {
         if (!userInfo) {
             history.push('/login');
         } else {
-            if (!user.name || !user.email) {
+            if (!user.name || !user.email || success) {
+                dispatch({ type: USER_UPDATE_PROFILE_RESET })
                 dispatch(getUserDetails('profile'));
                 dispatch(listMyOrders());
             } else {
@@ -42,7 +43,7 @@ const ProfileScreen = ({ history }) => {
                 setEmail(user.email);
             }
         }
-    }, [dispatch, history, userInfo, user, success]);
+    }, [dispatch, history, userInfo, user, success, orders]);
 
     const submitHandler = (e) => {
         setMessage(null);
@@ -88,7 +89,7 @@ const ProfileScreen = ({ history }) => {
             </Col>
             <Col md={9}>
                 <h2>My Orders</h2>
-                {loadingMyordrs ? <Loader /> : errorMyorders ? <Message variant='dange'>{errorMyorders}</Message> : (
+                {loadingMyOrders ? <Loader /> : errorMyorders ? <Message variant='dange'>{errorMyorders}</Message> : (
                     <Table striped bordered hover responsive className='table-sm'>
                         <thead>
                             <tr>
