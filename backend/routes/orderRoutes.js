@@ -1,12 +1,16 @@
 import express from 'express'
-import { addOrderItems, getMyOrders, getOrderById, updateOrderToPaid } from '../controllers/orderController.js'
-import { authMW } from '../middleware/authMW.js'
+import { addOrderItems, getMyOrders, getOrderById, getOrders, updateOrderToDelivered, updateOrderToPaid } from '../controllers/orderController.js'
+import { authMW, isAdmin } from '../middleware/authMW.js'
 
 const router = express.Router();
 
 router.route('/').post(
     authMW,
     addOrderItems
+).get(
+    authMW,
+    isAdmin,
+    getOrders
 )
 router.route('/myorders').get(
     authMW,
@@ -19,5 +23,10 @@ router.route('/:id').get(
 router.route('/:id/pay').put(
     authMW,
     updateOrderToPaid
+)
+router.route('/:id/deliver').put(
+    authMW,
+    isAdmin,
+    updateOrderToDelivered
 )
 export default router;

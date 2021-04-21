@@ -54,3 +54,8 @@ h2 {
 
 .myBadge {
 }
+@media screen and (max-width: 1200px) {
+  .button-text {
+    display: none;
+  }
+}
