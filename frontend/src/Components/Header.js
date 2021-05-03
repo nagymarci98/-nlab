@@ -1,9 +1,11 @@
 import React from 'react'
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
-import { useHistory } from "react-router-dom";
+import { useHistory, Route } from "react-router-dom";
 import { LinkContainer } from 'react-router-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from '../actions/userActions'
+import earchBox from '../Components/SearchBox'
+import SearchBox from '../Components/SearchBox';
 
 const Header = () => {
     let history = useHistory();
@@ -28,6 +30,7 @@ const Header = () => {
                         <LinkContainer to='/'>
                             <Nav.Link className='px-2'>Products</Nav.Link>
                         </LinkContainer>
+                        <Route render={({ history }) => <SearchBox history={history}></SearchBox>}></Route>
                         <Nav className="ml-auto">
                             <LinkContainer to='/cart'>
                                 <Nav.Link ><i className="fas fa-shopping-cart px-2"></i><span className="badge badge-light myBadge">{Object.keys(cart.cartItems).length === 0 ? '' : Object.keys(cart.cartItems).length}</span></Nav.Link>
