@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import bcrypt from 'bcryptjs'
+import { productSchema } from '../models/productModel.js'
 
 const userSchema = mongoose.Schema({
     name: {
@@ -20,6 +21,7 @@ const userSchema = mongoose.Schema({
         required: true,
         default: false
     },
+    favouriteProducts: [productSchema]
 }, {
     timestamps: true
 });

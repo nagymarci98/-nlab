@@ -8,11 +8,14 @@ import Loader from '../Components/Loader'
 import Message from '../Components/Message'
 import ProductPrice from '../Components/ProductPrice'
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constans/productConstans'
+import { listUserFavouriteProducts, addRemoveFavouriteProduct } from '../actions/userActions'
+import { USER_ADD_PRODUCT_TO_WISHLIST_RESET, USER_LIST_WISHLIST_RESET } from '../constans/userConstans'
 
 const ProductScreen = ({ history, match }) => {
     const [qty, setQty] = useState(1);
     const [rating, setRating] = useState(0);
     const [comment, setComment] = useState('');
+    const [alreadyInWishlist, setAlreadyInWistlist] = useState(false);
     const dispatch = useDispatch();
 
     const productDetails = useSelector(state => state.productDetails);
@@ -24,6 +27,11 @@ const ProductScreen = ({ history, match }) => {
     const userLogin = useSelector(state => state.userLogin);
     const { userInfo } = userLogin;
 
+    const userFavouriteProducts = useSelector(state => state.userFavouriteProducts);
+    const { loading: loadingFavourits, success: successFavourites, error: errorFavourites, favouriteProducts } = userFavouriteProducts;
+
+    const userAddRemoveFavouriteProduct = useSelector(state => state.userAddRemoveFavouriteProduct);
+    const { loading: loadingAddRemove, success: successAddRemove, error: errorAddRemove } = userAddRemoveFavouriteProduct;
 
     useEffect(() => {
         if (successProdcutReview) {
@@ -32,11 +40,19 @@ const ProductScreen = ({ history, match }) => {
             setComment('');
             dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
         }
-        dispatch(
-            getProductDetails(match.params.id)
-        );
-    }, [dispatch, match, successProdcutReview]);
-
+        dispatch(getProductDetails(match.params.id));
+        if (!successFavourites) {
+            dispatch(listUserFavouriteProducts());
+        } else {
+            alreadyOnWhistlistDetermine();
+        }
+    }, [dispatch, match, successProdcutReview, successFavourites, alreadyInWishlist, favouriteProducts, successAddRemove]);
+    const alreadyOnWhistlistDetermine = () => {
+        if (favouriteProducts && favouriteProducts.length > 0) {
+            var alreadyOnWhistlist = favouriteProducts.find(x => (x._id.toString() === match.params.id.toString()));
+        }
+        alreadyOnWhistlist ? setAlreadyInWistlist(true) : setAlreadyInWistlist(false);
+    }
     const addToCartHandler = () => {
         history.push(`/cart/${match.params.id}?qty=${qty}`)
     };
@@ -45,6 +61,12 @@ const ProductScreen = ({ history, match }) => {
         dispatch(createProductReview(match.params.id, {
             rating, comment
         }));
+    }
+    const addRemoveToWishlistHandler = (e) => {
+        e.preventDefault();
+        dispatch({ type: USER_ADD_PRODUCT_TO_WISHLIST_RESET });
+        dispatch(addRemoveFavouriteProduct(match.params.id));
+        dispatch(listUserFavouriteProducts());
     }
     return (
         <>
@@ -111,9 +133,20 @@ const ProductScreen = ({ history, match }) => {
                                         </ListGroup.Item>
                                     )}
                                     <ListGroup.Item>
-                                        <Button className='btn-block' type='button' disabled={product.countInStock === 0} onClick={addToCartHandler}>
-                                            Add To Cart
-                                </Button>
+                                        <Button className='btn-block' type='button' disabled={product.countInStock === 0} onClick={addToCartHandler}> Add To Cart</Button>
+                                        {loadingFavourits ? <Loader /> : (
+                                            <>
+                                                {alreadyInWishlist ? (
+                                                    <Button className='btn-block btn-light' type='button' onClick={(e) => addRemoveToWishlistHandler(e)}>
+                                                        Remove From Wishlist<span className='fas fa-heart ml-2' style={{ color: "red" }}></span>
+                                                    </Button>
+                                                ) : (
+                                                    <Button className='btn-block btn-light' type='button' onClick={(e) => addRemoveToWishlistHandler(e)}>
+                                                        Add To Wishlist<span className='far fa-heart ml-2' style={{ color: "red" }}></span>
+                                                    </Button>
+                                                )}
+                                            </>
+                                        )}
                                     </ListGroup.Item>
                                 </ListGroup>
                             </Card>

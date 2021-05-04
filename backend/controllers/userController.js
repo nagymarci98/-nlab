@@ -1,6 +1,7 @@
 import User from '../models/userModel.js'
 import asyncHandler from 'express-async-handler'
 import generateToken from '../utils/generateToken.js'
+import Product from '../models/productModel.js';
 
 //@desc     Auth user & get toket
 //@route    POST /api/user/login
@@ -176,6 +177,44 @@ const updateUser = asyncHandler(async (req, res) => {
         throw new Error('User not found');
     }
 });
+
+//@desc     Get user's wishlist
+//@route    GET /api/user/wishtlist
+//@access   Private
+const getUsersWishlistById = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.user._id);
+    if (user && user.favouriteProducts) {
+        res.json(user.favouriteProducts);
+    }
+    else {
+        res.status(404);
+        throw new Error('User not found');
+    }
+});
+
+//@desc     Add poduct to user's wishlist
+//@route    POST /api/user/wishtlist/:id
+//@access   Private
+const addProductToWishlist = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.user._id);
+    const product = await Product.findById(req.params.id);
+    if (user && product) {
+        const alreadyInWishlist = user.favouriteProducts.find(x => x._id.toString() === product._id.toString());
+        if (alreadyInWishlist) {
+            user.favouriteProducts.remove(product);
+        } else {
+            user.favouriteProducts.push(product);
+        }
+        const savedUser = await user.save();
+        res.json(savedUser);
+    }
+    else {
+        res.status(404);
+        throw new Error('User not found');
+    }
+});
+
+
 export {
     authUser,
     getUserProfile,
@@ -184,5 +223,7 @@ export {
     getUsers,
     deleteUser,
     getUserById,
-    updateUser
+    updateUser,
+    getUsersWishlistById,
+    addProductToWishlist
 };
